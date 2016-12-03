@@ -19,7 +19,8 @@ object Dependencies {
 
   val resolutionRepos = Seq(
     "typesafe repo" at "http://repo.typesafe.com/typesafe/releases/",
-    "Kamon Repository Snapshots" at "http://snapshots.kamon.io"
+    "Kamon Repository Snapshots" at "http://snapshots.kamon.io",
+    "clojars" at "https://clojars.org/repo"
   )
 
   val kamonVersion      = "0.6.3"

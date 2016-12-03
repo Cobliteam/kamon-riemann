@@ -32,7 +32,7 @@ object Dependencies {
   val akkaActor         = "com.typesafe.akka"         %%  "akka-actor"            % akkaVersion
   val akkaTestKit       = "com.typesafe.akka"         %%  "akka-testkit"          % akkaVersion
 
-  val riemannClient     = "com.aphyr"                 %   "riemann-java-client"   % "0.4.1"
+  val riemannClient     = "com.aphyr"                 %   "riemann-java-client"   % "0.4.2"
 
   val slf4jApi          = "org.slf4j"                 %   "slf4j-api"             % slf4jVersion
   val slf4jnop          = "org.slf4j"                 %   "slf4j-nop"             % slf4jVersion

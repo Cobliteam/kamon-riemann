@@ -2,8 +2,7 @@ Riemann Integration    ![Build Status](https://travis-ci.org/kamon-io/kamon-riem
 ==========================
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kamon-io/Kamon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-***kamon-riemann*** [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.kamon/kamon-riemann_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.kamon/kamon-riemann_2.11)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.kamon/kamon-riemann_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.kamon/kamon-riemann_2.11)
 
 Reporting Metrics to Riemann
 ===========================
@@ -17,6 +16,22 @@ Installation
 Add the `kamon-riemann` dependency to your project and ensure that it is in your classpath at runtime, that’s it. Kamon’s
 module loader will detect that the Riemann module is in the classpath and automatically start it.
 
+### Getting Started
+
+Kamon statsd module is currently available for Scala 2.10, 2.11 and 2.12.
+
+Supported releases and dependencies are shown below.
+
+| kamon-riemann  | status | jdk  | scala            | akka   |
+|:------:|:------:|:----:|------------------|:------:|
+|  0.6.6 | stable | 1.7+, 1.8+ | 2.10, 2.11, 2.12  | 2.3.x, 2.4.x |
+
+To get started with SBT, simply add the following to your `build.sbt`
+file:
+
+```scala
+libraryDependencies += "io.kamon" %% "kamon-riemann" % "0.6.6"
+```
 
 Configuration
 -------------
@@ -65,7 +80,7 @@ kamon.riemann {
 If you are interested in reporting additional entities to Riemann please ensure that you include the categories and name
 patterns accordingly.
 
-You can control flush interval independently for TCP and UDP `kamon.riemann.udp.flush-interval` and `kamon.riemann.tcp.flush-interval` 
+You can control flush interval independently for TCP and UDP `kamon.riemann.udp.flush-interval` and `kamon.riemann.tcp.flush-interval`
 By default both settings are 10 seconds. Note that the flush interval should be equal or greater than internal snapshot interval
 which is controlled by `kamon.metric.tick-interval` (Default 10 seconds)
 
@@ -107,6 +122,6 @@ someHistogram.record(0.11)
 
 Note that currently kamon tags is a `Map[String,String]` and all values have to be expressed as a `String` including numbers and timestamps.
 
-You can create custom mapper by implememting `kamon.riemann.MetricsMapper` and setting classname under `kamon.riemann.metrics-mapper` config key. 
+You can create custom mapper by implememting `kamon.riemann.MetricsMapper` and setting classname under `kamon.riemann.metrics-mapper` config key.
 
 [Riemann]: http://riemann.io/

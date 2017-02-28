@@ -1,5 +1,5 @@
 /* =========================================================================================
- * Copyright © 2013-2016 the kamon project <http://kamon.io/>
+ * Copyright © 2013-2017 the kamon project <http://kamon.io/>
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
  * except in compliance with the License. You may obtain a copy of the License at
@@ -13,15 +13,21 @@
  * =========================================================================================
  */
 
+val kamonCore         = "io.kamon"                  %%  "kamon-core"            % "0.6.6"
+val riemannClient     = "com.aphyr"                 %   "riemann-java-client"   % "0.4.1"
 
-import Settings._
-import Dependencies._
+name := "kamon-riemann"
+resolvers += "clojars" at "https://clojars.org/repo"
+testGrouping in Test := singleTestPerJvm((definedTests in Test).value, (javaOptions in Test).value)
+libraryDependencies ++=
+  compileScope(kamonCore, akkaDependency("actor").value, riemannClient) ++
+  testScope(scalatest, akkaDependency("testkit").value, slf4jApi, slf4jnop)
 
-lazy val root = (project in file("."))
-  .settings(name := "kamon-riemann")
-  .settings(basicSettings: _*)
-  .settings(formatSettings: _*)
-  .settings(
-      libraryDependencies ++=
-        compileScope(kamonCore, akkaActor, riemannClient) ++
-        testScope(scalatest, akkaTestKit, slf4jApi, slf4jnop))
+import sbt.Tests._
+def singleTestPerJvm(tests: Seq[TestDefinition], jvmSettings: Seq[String]): Seq[Group] =
+  tests map { test =>
+    Group(
+      name = test.name,
+      tests = Seq(test),
+      runPolicy = SubProcess(ForkOptions(runJVMOptions = jvmSettings)))
+  }

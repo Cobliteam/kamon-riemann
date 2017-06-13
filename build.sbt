@@ -13,7 +13,7 @@
  * =========================================================================================
  */
 
-val kamonCore         = "io.kamon"                  %%  "kamon-core"            % "0.6.6"
+val kamonCore         = "io.kamon"                  %%  "kamon-core"            % "0.6.7"
 val riemannClient     = "com.aphyr"                 %   "riemann-java-client"   % "0.4.1"
 
 name := "kamon-riemann"

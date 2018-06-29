@@ -17,10 +17,8 @@
 package kamon.riemann
 
 import com.aphyr.riemann.Proto.Event
-import kamon.metric.instrument.InstrumentSnapshot
-import kamon.metric.{ Entity, MetricKey }
+import kamon.metric.MetricsSnapshot
 
 trait MetricsMapper {
-
-  def toEvents(entity: Entity, key: MetricKey, snapshot: InstrumentSnapshot): Seq[Event]
+  def toEvents(snapshot: MetricsSnapshot): Seq[Event]
 }

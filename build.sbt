@@ -23,6 +23,8 @@ libraryDependencies ++=
   compileScope(kamonCore, akkaDependency("actor").value, riemannClient) ++
   testScope(scalatest, akkaDependency("testkit").value, slf4jApi, slf4jnop)
 
+crossScalaVersions := Seq("2.11.12", "2.12.6")
+
 import sbt.Tests._
 def singleTestPerJvm(tests: Seq[TestDefinition], jvmSettings: Seq[String]): Seq[Group] =
   tests map { test =>

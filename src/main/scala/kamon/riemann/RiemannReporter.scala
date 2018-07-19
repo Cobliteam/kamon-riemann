@@ -1,3 +1,4 @@
+
 package kamon.riemann
 
 import com.typesafe.config.Config
@@ -15,7 +16,7 @@ class RiemannReporter (implicit protected val executionContext: ExecutionContext
   private val log = LoggerFactory.getLogger(getClass)
   private var configuration: Option[Configuration] = None
   private var mapper: Option[MetricsMapper] = None
-  private var sender : Option[UdpSender] = None
+  private var sender : Option[TcpSender] = None
 
   override def reportPeriodSnapshot(snapshot: PeriodSnapshot): Unit = {
     log.debug(s"Snapshot Received: <$snapshot>")
@@ -36,7 +37,7 @@ class RiemannReporter (implicit protected val executionContext: ExecutionContext
   private def restart(config: Config): Unit = {
     mapper = Some(getMapper(configuration.get.metricsMapper, config, Kamon.environment.host))
     sender.foreach(_.close())
-    sender = Some(new UdpSender(configuration.get.hostname, configuration.get.port))
+    sender = Some(new TcpSender(configuration.get.hostname, configuration.get.port))
     sender.get.connect()
   }
 

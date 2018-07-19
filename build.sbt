@@ -23,6 +23,8 @@ libraryDependencies ++=
   compileScope(kamonCore, akkaDependency("actor").value, riemannClient) ++
   testScope(scalatest, akkaDependency("testkit").value, slf4jApi, slf4jnop)
 
+libraryDependencies += "org.scala-lang.modules" %% "scala-async" % "0.9.6"
+
 crossScalaVersions := Seq("2.11.12", "2.12.6")
 
 import sbt.Tests._
